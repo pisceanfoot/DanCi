@@ -117,47 +117,59 @@ li{
 .content_container .body{
 	margin: 10px 2px;
 	padding: 5px 7px;
-	border: #ccc 1px solid;
 }
 
 .content_container .body .item{
-	margin: 5px 0px;
+	background: #D4F2F7;
+	margin-bottom: 15px;
 }
 
 .content_container .body .item .pron{
-	background: transparent url(../img/SpeakerOffA16.png) 0 0 no-repeat;
-	background-position: 1px 6px;
-	width: 16px;
+	background:  url(../img/SpeakerOffA16.png) 0px 8px no-repeat;
+	width: 22px;
 	height: 26px;
 	float: left;
 }
-
+.content_container .body .item .pron:hover{
+	background-image:  url(../img/SpeakerOffA16on.png) ;
+}
 
 .content_container .body .item .word{
-	background-color: #f4f6fc;
+	background-color: #A0E2EC;
 	padding: 0px 6px;
 	height: 28px;
 	line-height: 28px;
+	font-size: 20px;
 }
 
+#searchAction{
+	color: #fff;
+}
 .content_container .body .item ul li{
 	margin: 8px 8px;
+	clear: both;
+	overflow: hidden;
+	color: #4d4d4d;
+	font-family: microsoft yahei;
 }
 
-.content_container .body .item ul li span{
+.content_container .body .item ul li .tip_title{
 	float: left;
 	margin-right: 5px;
 	white-space: nowrap;
+	width: 40px;
 }
 
 .content_container .body .item h4{
-	width: 70%;
+	margin-right: 10px;
 	float: left;
+	color: #333;
 }
 
-.content_container .body .item ul li p{
+.content_container .body .item ul li .tip_content{
 	white-space: normal;
 	font-size: 13px;
+	float: left;
 }
 
 .content_container .body .item .right{

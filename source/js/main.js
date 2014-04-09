@@ -245,7 +245,7 @@ var danciDict = {
 		// n.
 		// web.
 		var array = [];
-		var strLi = '<li><span>{0}</span> <p>{1}</p></li>';
+		var strLi = '<li><div class="tip_title">{0}</div> <div class="tip_content">{1}</div></li>';
 		if(item.tt){
 
 			$.each(item.tt, function(i, e){

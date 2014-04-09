@@ -13,7 +13,7 @@ var popup = {
 	* @description init function
 	*/
 	init: function () {
-		danciStorage.init();
+		danciStorage.	init();
 		popup.list();
 
 		$('#pagepre').click(function () {
@@ -61,7 +61,7 @@ var popup = {
 				var item = value.fanyi;
 
 				var array = [];
-				var strLi = '<li><span>{0}</span> <p>{1}</p></li>';
+				var strLi = '<li><div class="tip_title">{0}</div> <div class="tip_content">{1}</div></li>';
 				if(item.tt){
 
 					$.each(item.tt, function(i, e){
@@ -71,7 +71,7 @@ var popup = {
 				}
 
 				var str = '<div class="item" w="{0}">\
-					        <div class="word"><a href="javascript:void(0);" class="pron"></a><h4>{0} [{1}]</h4>\
+					        <div class="word"><h4>{0} [{1}]</h4><a href="javascript:void(0);" class="pron"></a>\
 					            <div class="right">\
 					                <span></span><a class="del" href="javascript:void(0);"></a>\
 					            </div>\
