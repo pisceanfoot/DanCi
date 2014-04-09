@@ -110,12 +110,21 @@ var danciDict = {
 			return;
 		}
 
-		var newClassItem = highlight.process(word);
 		bingDict.query({word: word, callback: function(result){
 			//result: {word:, tt:[fanyi], ps:'pronounce', pron:'mp3'}
 			// tt: {acceptation: ,pos:}
+			var newClassItem = highlight.process(word);
 			danciDict.onQuery(result);
 			danciDict.onTip(newClassItem, result);
+
+			setTimeout(function(){
+				var selection = window.getSelection();
+			if(selection && selection.type != 'None'){
+				var selectNode = selection.anchorNode.parentNode;
+				console.log(selection);
+				console.log(selectNode);
+			}
+			}, 1000);
 		}});
 	},
 
@@ -133,7 +142,7 @@ var danciDict = {
 		}
 	},
 
-	onTip: function (selectItem, item) {
+	onTip: function (selectItem, item, autoShow) {
 		var highlightItem = $('.' + selectItem);
 		highlightItem.data(resource.SAVE_HIGHLIGHT_WORD, item.word);
 		
@@ -158,11 +167,20 @@ var danciDict = {
 			      }
    			},
 		   	show: 'mouseover',
-		   	hide: 'mouseout'
+		   	hide: 'mouseout',
+		   	show: { ready: autoShow }
 		})
 
 		highlightItem.mouseenter(danciDict.onTipMouseEnter);
 		highlightItem.mouseleave(danciDict.onTipMouseLeave);
+		highlightItem.click(function (argument) {
+			var selection = window.getSelection();
+			if(selection && selection.type != 'None'){
+				var selectNode = selection.anchorNode.parentNode;
+				console.log(selection);
+				console.log(selectNode);
+			}
+		})
 		highlightItem.dblclick(danciDict.onTipClick);
 	},
 
@@ -176,10 +194,13 @@ var danciDict = {
 		danciStorage.get(word, function(value){
 			item = value.value;
 
-			danciDict.play(item.fanyi.pron);
-		});
-
-		
+			if(danciDict._playAudioTimer){
+				clearTimeout(danciDict._playAudioTimer);
+			}
+			danciDict._playAudioTimer = setTimeout(function() {
+				danciDict.play(item.fanyi.pron);
+			}, 800);
+		});	
 	},
 
 	/*
@@ -188,6 +209,10 @@ var danciDict = {
 	onTipMouseLeave: function () {
 		var _this = $(this);
 		var word = _this.data(resource.SAVE_HIGHLIGHT_WORD);
+
+		if(danciDict._playAudioTimer){
+			clearTimeout(danciDict._playAudioTimer);
+		}
 
 		var item = danciStorage.get(word, function (e) {
 			danciDict.pause(e.value.fanyi.pron);
@@ -200,6 +225,9 @@ var danciDict = {
 	*/
 	onTipClick: function () {
 		// remove
+		if(danciDict._playAudioTimer){
+			clearTimeout(danciDict._playAudioTimer);
+		}
 
 		var _this = $(this);
 		var word = _this.data(resource.SAVE_HIGHLIGHT_WORD);
@@ -275,6 +303,27 @@ var danciDict = {
 	}
 };
 
-function deleteItem (key) {
-	danciDict.onItemDelete(key);
-}
+/*
+* @description message
+*/
+chrome.runtime.onMessage.addListener(
+  function(request, sender, sendResponse) {
+  	// TODO: add event drive
+
+    if(sender.tab){
+    	// from content script
+    	// sender.tab.url
+    	return;
+    }
+
+    // else from extension
+    if(!request.from || request.from != "popup"){
+    	return;
+    }
+
+    if(request.action == 'delete'){
+    	console.log('del');
+    	danciDict.onItemDelete(request.word);
+    	console.log('dela');
+    }
+  });

@@ -110,6 +110,7 @@ var log = {
             pause: function () {
                 if(myAudio){
                     myAudio.pause();
+                    delete myAudio;
                 }
                 delete _playList[src];
             }
@@ -315,7 +316,6 @@ var danciStorage = {
 
 
 
-/*
 if (!chrome.runtime) {
     // Chrome 20-21
     chrome.runtime = chrome.extension;
@@ -326,4 +326,3 @@ if (!chrome.runtime) {
     chrome.runtime.onConnect = chrome.extension.onConnect;
     chrome.runtime.connect = chrome.extension.connect;
 }
-*/

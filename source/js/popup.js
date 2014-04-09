@@ -71,9 +71,9 @@ var popup = {
 				}
 
 				var str = '<div class="item" w="{0}">\
-					        <div class="word"><h4>{0} [{1}]</h4><a href="javascript:void(0);" class="pron"></a>\
+					        <div class="word"><h4>{0} [{1}]</h4><a href="#" class="pron"></a>\
 					            <div class="right">\
-					                <span></span><a class="del" href="javascript:void(0);"></a>\
+					                <span></span><a class="del" href="#"></a>\
 					            </div>\
 					        </div>\
 					        <ul>\
@@ -101,6 +101,7 @@ var popup = {
 	* @description bind remove event
 	*/
 	removeEvent: function () {
+		event.preventDefault();
 		// .item
 		// remove .item
 		var parent = $(this).parents('.item');
@@ -113,15 +114,10 @@ var popup = {
 			popup.list();
 
 			// call content
-			var code = "deleteItem('" + word + "');";
-			chrome.tabs.executeScript(null, {code:code});
-
-			/*
-			chrome.tabs.query({active:true, currentWindow:true}, function(tabs){
-				if(!tabs) return;
-
-				chrome.tabs.sendMessage(tags[0], {from: 'popup', message: 'remove', data: word});
-			});*/
+			chrome.tabs.query({active: true, currentWindow: true}, function(tabs) {
+			  chrome.tabs.sendMessage(tabs[0].id, {from: 'popup', action: 'delete', word: word}, function(response) {
+			  });
+			});
 		}
 	}, 
 
@@ -129,6 +125,8 @@ var popup = {
 	* @description bind pron event
 	*/
 	pronEvent: function(){
+		event.preventDefault();
+		
 		var parent = $(this).parents('.item');
 		var word = parent.attr('w');
 		if(word){

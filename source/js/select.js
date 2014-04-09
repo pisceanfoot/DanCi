@@ -43,6 +43,7 @@ var selectWord = {
 
 			var selection = selectWord._getSelectContext();
 			if(!selection) return;
+			// None/Cart/Range
 			if(selection.type != "Range") return;
 
 			var selectValue = selection.toString();

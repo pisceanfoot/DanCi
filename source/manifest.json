@@ -15,7 +15,6 @@
       "matches": [ "\u003Call_urls>" ],
       "run_at": "document_idle"
    } ],
-   "content_security_policy": "script-src 'self' https://www.google.com/ https://ajax.googleapis.com/; object-src 'self'",
    "description": "词霸, 轻松背单词",
    "icons": {
       "128": "img/sw_128.png",
