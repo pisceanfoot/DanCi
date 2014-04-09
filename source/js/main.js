@@ -91,15 +91,19 @@ var danciDict = {
 		var removeItem = $('span[class^=danci_highlight]');
 		if(!removeItem.length) return;
 
-		removeItem = removeItem.eq(0);
+		removeItem.each(function(i, e){
+			var _this = $(e);
+			var word = _this.data(resource.SAVE_HIGHLIGHT_WORD);
 
-		var _this = $(removeItem);
-		var word = _this.data(resource.SAVE_HIGHLIGHT_WORD);
-		if(key.toLowerCase() == word.toLowerCase()){
-			var className = _this.attr('class');
-			$('.' + className).qtip('destroy');
-			highlight.remove(className);
-		}
+			if(!word){
+				return;
+			}
+			if(key.toLowerCase() == word.toLowerCase()){
+				var className = _this.attr('class');
+				$('.' + className).qtip('destroy');
+				highlight.remove(className);
+			}
+		});
 	},
 
 	/*
@@ -116,15 +120,6 @@ var danciDict = {
 			var newClassItem = highlight.process(word);
 			danciDict.onQuery(result);
 			danciDict.onTip(newClassItem, result);
-
-			setTimeout(function(){
-				var selection = window.getSelection();
-			if(selection && selection.type != 'None'){
-				var selectNode = selection.anchorNode.parentNode;
-				console.log(selection);
-				console.log(selectNode);
-			}
-			}, 1000);
 		}});
 	},
 
@@ -142,7 +137,7 @@ var danciDict = {
 		}
 	},
 
-	onTip: function (selectItem, item, autoShow) {
+	onTip: function (selectItem, item, autoShow, target) {
 		var highlightItem = $('.' + selectItem);
 		highlightItem.data(resource.SAVE_HIGHLIGHT_WORD, item.word);
 		
@@ -166,21 +161,18 @@ var danciDict = {
 			         color: '#A2D959'
 			      }
    			},
-		   	show: 'mouseover',
 		   	hide: 'mouseout',
-		   	show: { ready: autoShow }
+		   	show: { 
+		   		ready: autoShow,
+		   		when: {
+		   			target: target,
+		   			event: 'mouseover'
+		   		}
+		   	}
 		})
 
 		highlightItem.mouseenter(danciDict.onTipMouseEnter);
 		highlightItem.mouseleave(danciDict.onTipMouseLeave);
-		highlightItem.click(function (argument) {
-			var selection = window.getSelection();
-			if(selection && selection.type != 'None'){
-				var selectNode = selection.anchorNode.parentNode;
-				console.log(selection);
-				console.log(selectNode);
-			}
-		})
 		highlightItem.dblclick(danciDict.onTipClick);
 	},
 
@@ -193,6 +185,7 @@ var danciDict = {
 
 		danciStorage.get(word, function(value){
 			item = value.value;
+			if(!item) return;
 
 			if(danciDict._playAudioTimer){
 				clearTimeout(danciDict._playAudioTimer);
@@ -215,6 +208,8 @@ var danciDict = {
 		}
 
 		var item = danciStorage.get(word, function (e) {
+			if(!e || !e.value) return;
+
 			danciDict.pause(e.value.fanyi.pron);
 		});
 		
@@ -322,8 +317,6 @@ chrome.runtime.onMessage.addListener(
     }
 
     if(request.action == 'delete'){
-    	console.log('del');
     	danciDict.onItemDelete(request.word);
-    	console.log('dela');
     }
   });

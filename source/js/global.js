@@ -257,7 +257,7 @@ var danciStorage = {
     key = key.toLowerCase();
 
     danciStorage.storage.get(key, function(item){
-      callback({key: key, value: item[key].value});
+      callback(item[key] ? {key: key, value: item[key].value} : null);
     });
   },
 
@@ -270,6 +270,7 @@ var danciStorage = {
 
     var dict = danciStorage.storage;
     dict.get(null, function (items) {
+
       var data = [];
       for(var d in items){
         var save = items[d];
@@ -299,13 +300,13 @@ var danciStorage = {
       var pages = Math.ceil(count / condition.pageSize);
 
       var index = (pageIndex - 1) * pageSize;
-      if(index > count) {
+      if(index >= count) {
         pageIndex = pages;
         index = count - pageSize;
       }
 
       var result = [];
-      for(var i = index; i < pageSize && i < data.length; i++){
+      for(var i = index; i < pageSize + index && i < data.length; i++){
         result.push(data[i]);
       }
 
@@ -314,6 +315,33 @@ var danciStorage = {
   }
 };
 
+function defaultText(op) {
+   op=$.extend(op || {},{
+        hasDefaultText: ".hasDefaultText",
+        removeClass: "hasDefaultText",
+        addClass: "hasDefaultText"
+    });
+    var obj = $(op.hasDefaultText);
+    var tmpText = new Array();
+    var objIndex = 0;
+    for (i = 1; i <= obj.length; i++) {
+        tmpText[i - 1] = obj.eq(i - 1).attr('defaultValue');
+    }
+    obj.focus(function () {
+        objIndex = obj.index($(this));
+        if ($(this).val() == tmpText[objIndex]) {
+            $(this).val("");
+            $(this).removeClass(op.removeClass);
+        }
+    });
+    obj.blur(function () {
+        objIndex = obj.index($(this));
+        if ($(this).val() == "") {
+            $(this).val(tmpText[objIndex]);
+            $(this).addClass(op.addClass);
+        }
+    });
+}
 
 
 if (!chrome.runtime) {

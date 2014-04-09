@@ -7,13 +7,13 @@ var popup = {
 	/*
 	* @description condition
 	*/
-	condition: {pageIndex : 1},
+	condition: {pageIndex : 1, namespace: 'word'},
 
 	/*
 	* @description init function
 	*/
 	init: function () {
-		danciStorage.	init();
+		danciStorage.init();
 		popup.list();
 
 		$('#pagepre').click(function () {
@@ -27,14 +27,15 @@ var popup = {
 			popup.list();
 		});
 
-		$('#searchAction').click(popup.searchEvent());
-	},
-
-	/*
-	* @description search
-	*/
-	search: function (keyword) {
+		$('#keyword').keydown(function (e) {
+			if(e.which == 13){
+				popup.searchEvent();
+			}
+		});
+		$('#searchAction').click(popup.searchEvent);
+		$('#searchActionD').click(popup.searchEvent);
 		
+		defaultText();
 	},
 
 	/*
@@ -46,10 +47,10 @@ var popup = {
 
 			log.debug(result);
 
-			if(!result){
+			if(!result || !result.length){
 				$(popup.container).html('');
 				$('#w_count').html('0');
-				$('.navi').hide();
+				//$('.navi').hide();
 				return;
 			}
 
@@ -141,7 +142,16 @@ var popup = {
 	* @description search
 	*/
 	searchEvent: function () {
-		
+		event.preventDefault();
+
+		var keywordInput = $("#keyword");
+		var keyword = keywordInput.val();
+		var defaultValue = keywordInput.attr('defaultValue');
+		if(keyword == defaultValue) return;
+
+		// http://cn.bing.com/dict/search?q=word
+		var searchUrl = 'http://cn.bing.com/dict/search?q=' + encodeURIComponent(keyword);
+		chrome.tabs.create({url:searchUrl});
 	}
 };
 
