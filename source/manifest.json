@@ -1,0 +1,36 @@
+{
+   "background": {
+      "scripts": ["js/jquery-1.7.2.min.js", "js/background.js"]
+   },
+   "browser_action": {
+      "all_frames": true,
+      "default_icon": "img/sw_19.png",
+      "default_title": "词霸",
+      "default_popup": "html/popup.htm"
+   },
+   "content_scripts": [ {
+      "all_frames": true,
+      "css": [ "css/content.css"],
+      "js": [ "js/jquery-1.7.2.min.js", "js/config.js", "js/global.js", "js/select.js", "js/bing.js", "js/highlight.js", "js/qtip.min.js", "js/main.js" ],
+      "matches": [ "\u003Call_urls>" ],
+      "run_at": "document_idle"
+   } ],
+   "content_security_policy": "script-src 'self' https://www.google.com/ https://ajax.googleapis.com/; object-src 'self'",
+   "description": "词霸, 轻松背单词",
+   "icons": {
+      "128": "img/sw_128.png",
+      "16": "img/sw_16.png",
+      "19": "img/sw_19.png",
+      "32": "img/sw_32.png",
+      "48": "img/sw_48.png"
+   },
+   "manifest_version": 2,
+   "name": "词霸",
+   "omnibox": {
+      "keyword": "danci"
+   },
+   "permissions": [ "*://*/*", "unlimitedStorage", "notifications", "bookmarks", "tabs", "contextMenus", "storage" ],
+   "update_url": "http://clients2.google.com/service/update2/crx",
+   "version": "0.1",
+   "web_accessible_resources": [ "img/loading.gif" ]
+}

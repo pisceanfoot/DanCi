@@ -1,0 +1,176 @@
+* {
+	margin: 0;
+	padding: 0;
+}
+body {
+	width: 600px;
+	height: 500px;
+	min-width: 400px;
+	font-family: "微软雅黑", "Microsoft YaHei", "宋体", Verdana, Geneva, sans-serif;
+	background-color: #fafcff;
+}
+
+a{
+	text-decoration: none;
+}
+
+li{
+	list-style: none;
+}
+
+.right{
+	float: right;
+}
+
+#main_container .header_container{
+	height: 38px;
+	background-color: #377bee;
+}
+
+#main_container .header_container .title{
+	position: absolute;
+	top: 6px;
+	left: 10px;
+	color: white;
+	font-size: 20px;
+}
+
+#main_container .header_container .pingjia{
+	color: #fff;
+	margin-top: 10px;
+	margin-right: 10px;
+	white-space: nowrap;
+	overflow: hidden;
+	font-size: 14px;
+}
+
+#main_container .header_container ul{
+	padding-top: 7px;
+	width:162px;
+	height: 31px;
+	margin-left: 150px;
+	font-size: 16px;
+	color: white;
+	overflow: hidden;;
+}
+
+#main_container .header_container ul li{
+	padding:4px 13px;	
+	line-height: 21px;
+	border-top-left-radius: 5px;
+	border-top-right-radius: 5px;
+	float: left;
+	list-style: none;
+	color: #1eb2ff;
+	background: #fafcff;
+	height: 23px;
+}
+
+.search_container {
+	margin: 10px 0;
+}
+
+.search_container .searchbox{
+	margin-left: 22px;
+}
+
+#keyword {
+	width: 407px;
+	height: 22px
+	line-height:22px;
+	padding: 8px;
+	border: #a4b7c5 1px solid;
+	border-radius: 2px;
+	box-shadow: 0 0 2px #a4b7c5;
+	color:#a4b7c5;
+	font-size: 16px;
+	float: left;
+	outline: none;;
+	margin: 3px 10px;
+}
+
+.search_container .s{
+	padding: 8px 30px;
+	display: inline;
+	width: 115px;
+	height: 40px;
+	line-height: 40px;
+	border: none;
+	text-decoration: none;
+	text-align: center;
+	background-color: #138de1;
+	border-radius: 5px;
+}
+
+
+.content_container{
+	margin: 10px 0;
+}
+
+.content_container .header{
+	padding: 0 10px;
+}
+.content_container .header .navi{
+	float: right;
+}
+
+.content_container .body{
+	margin: 10px 2px;
+	padding: 5px 7px;
+	border: #ccc 1px solid;
+}
+
+.content_container .body .item{
+	margin: 5px 0px;
+}
+
+.content_container .body .item .pron{
+	background: transparent url(../img/SpeakerOffA16.png) 0 0 no-repeat;
+	background-position: 1px 6px;
+	width: 16px;
+	height: 26px;
+	float: left;
+}
+
+
+.content_container .body .item .word{
+	background-color: #f4f6fc;
+	padding: 0px 6px;
+	height: 28px;
+	line-height: 28px;
+}
+
+.content_container .body .item ul li{
+	margin: 8px 8px;
+}
+
+.content_container .body .item ul li span{
+	float: left;
+	margin-right: 5px;
+	white-space: nowrap;
+}
+
+.content_container .body .item h4{
+	width: 70%;
+	float: left;
+}
+
+.content_container .body .item ul li p{
+	white-space: normal;
+	font-size: 13px;
+}
+
+.content_container .body .item .right{
+	width: 20%;
+	text-align: right;
+}
+
+.del{
+	background: transparent url(../img/del.png) 0 0 no-repeat;
+	background-position: 1px 5px;
+	width: 16px;
+	height: 19px;
+	float: right;
+	margin: 2px 5px;
+}
+

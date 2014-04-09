@@ -1,0 +1,30 @@
+.tip-content h4{
+	margin: 5px auto;
+	font: bolder 14px tahoma;
+}
+
+.tip-content ul{
+	width: 351px;
+	margin: 0 auto;
+}
+.tip-content li{
+	width: 100%;
+	text-align: left;
+	white-space: normal;
+	margin-bottom: 5px;
+	font: 13px/1.54 microsoft yahei,arial;
+	overflow: hidden;
+}
+.tip-content li span{
+	float: left;
+	width: 30px;
+	margin-right: 10px;
+	white-space: nowrap;
+	font-family: Courier;
+	font-weight: bolder;
+}
+.tip-content li p{
+	float: left;
+	width: 310px;
+	white-space: normal;
+}

@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <title>Danci</title>
+    <link rel="stylesheet" type="text/css" href="../css/popup.css"/>
+    <script type="text/javascript" src="../js/jquery-1.7.2.min.js"></script>
+    <script type="text/javascript" src="../js/config.js"></script>
+    <script type="text/javascript" src="../js/global.js"></script>
+    <script type="text/javascript" src="../js/popup.js"></script>
+</head>
+<body>
+    <div id="main_container">
+        <div class="header_container">
+            <span class="title">词霸单词</span>
+            <a class="pingjia right" href="#">评价</a>
+            <ul>
+                <li>搜索</li>
+            </ul>
+        </div>
+        <div class="search_container">
+            <div class="searchbox">
+                <input id="keyword" type="input" value="coming soon..." defaultvalue=""/>
+                <div class="s"><a id="searchAction" href="#">搜 索</a></div>
+            </div>
+        </div>
+        <div class="content_container">
+            <div class="header">
+                <span>单词:</span><span id="w_count"></span><span>个</span>
+                <div class="navi">
+                    <span id="w_page"></span>
+                    <input id="pagepre" type="button" value="上一页"/>
+                    <input id="pagenext" type="button" value="下一页"/>
+                </div>
+            </div>
+            <div class="body" id="dict_word">
+            </div>
+            <div class="footer"></div>
+        </div>
+	</div>
+    <script type="text/template" id="doct_word_template">
+    <div class="item">
+        <div class="word"><a href="#" class="pron"></a><h4>word [word]</h4>
+            <div class="right">
+                <span>20</span><a class="del" href="#"></a>
+            </div>
+        </div>
+        <ul>
+            <li><span>n.</span> <p></p></li>
+        </ul>
+    </div>
+    </script>
+</body>
+</html>
