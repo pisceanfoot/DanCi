@@ -120,6 +120,43 @@ var danciDict = {
 			var newClassItem = highlight.process(word);
 			danciDict.onQuery(result);
 			danciDict.onTip(newClassItem, result);
+
+			$('body').qtip({
+			   content: danciDict.itemString(result),
+			   position: {
+	                  		corner: {
+	                  			tooltip: 'bottomMiddle',
+		                     	target: 'topMiddle'
+		                  	},
+		                  	target: 'mouse',
+		                  	adjust: {
+								screen: true,
+								mouse: true
+							}
+		                  },
+	            style: { 
+	      			name: 'cream',
+	      			width: '400px',
+	      			border: {
+				         width: 7,
+				         radius: 5,
+				         color: '#A2D959'
+				      }
+	   			},
+			   	hide: {
+			   		when:{
+			   			target:$('.' + newClassItem),
+			   			event: 'dblclick'
+			   		}
+			   	},
+			   	show: { 
+			   		ready: true,
+			   		delay: 1,
+			   		when: {
+			   			event: false
+			   		}
+			   	}
+			});
 		}});
 	},
 
@@ -168,8 +205,13 @@ var danciDict = {
 		   			target: target,
 		   			event: 'mouseover'
 		   		}
+		   	},
+		   	api:{
+		   		onShow:function(){
+		   			$('body').qtip('destroy');
+		   		}
 		   	}
-		})
+		});
 
 		highlightItem.mouseenter(danciDict.onTipMouseEnter);
 		highlightItem.mouseleave(danciDict.onTipMouseLeave);
