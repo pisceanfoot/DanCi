@@ -8,8 +8,13 @@ body {
 	min-width: 400px;
 	font-family: "微软雅黑", "Microsoft YaHei", "宋体", Verdana, Geneva, sans-serif;
 	background-color: #fafcff;
+	overflow: hidden;
 }
+html{
+	width: 600px;
+	height: 500px;
 
+}
 a{
 	text-decoration: none;
 }
