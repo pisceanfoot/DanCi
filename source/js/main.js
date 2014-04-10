@@ -332,7 +332,10 @@ var bodytip = $('body').qtip({
               		my: 'bottom center',
 					at: 'center',
 					target: 'mouse',
-					viewport: $(window)
+					viewport: $(window),
+					adjust: {
+							y: -10
+					}
                   },
         style: { 
   			classes: 'qtip-shadow qtip-rounded qtipex',
@@ -345,16 +348,13 @@ var bodytip = $('body').qtip({
 			event: false
 		},
 		hide: {
-			delay:1000
+			delay:10
 		},
 		events:{
-			move: function(){
+			move: function(event, api){
 				var first = this.attr('_x_first');
-				console.log('move');
-				console.log(first);
 				if(first){
-					this.qtip().hide();
-					console.log('hide');
+					api.hide();
 				}
 				this.attr('_x_first', true);					
 			},

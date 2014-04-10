@@ -86,6 +86,7 @@ var popup = {
 				all.push(str);
 			}
 
+
 			$(popup.container).html('');
 			$(popup.container).append(all.join(''));
 			$('#w_count').html(count);
