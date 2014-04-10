@@ -114,6 +114,8 @@ var danciDict = {
 			return;
 		}
 
+		bodyTipApi.render();
+		
 		bingDict.query({word: word, callback: function(result){
 			//result: {word:, tt:[fanyi], ps:'pronounce', pron:'mp3'}
 			// tt: {acceptation: ,pos:}
@@ -165,7 +167,12 @@ var danciDict = {
    			hide: {
    				event: 'mouseleave',
    				delay: 100
-   			}
+   			},
+   			events: {
+		        show: function(event, api) {
+					bodyTipApi.hide();		            
+		        }
+		    }
 		});
 
 		highlightItem.mouseenter(danciDict.onTipMouseEnter);
@@ -320,41 +327,41 @@ chrome.runtime.onMessage.addListener(
 
 
 var bodytip = $('body').qtip({
-			   content: '.',
-			   position: {
-	                  		my: 'bottom center',
-							at: 'center',
-							target: 'mouse',
-							viewport: $(window)
-		                  },
-	            style: { 
-	      			classes: 'qtip-shadow qtip-rounded qtipex',
-	      			width: '400px',
-					tip: false
-	   			},
-				show: {
-					ready:false,
-					delay: 10,
-					event: false
-				},
-				hide: {
-					delay:1000
-				},
-				events:{
-					move: function(){
-						var first = this.attr('_x_first');
-												console.log('move');
-						console.log(first);
-						if(first){
-							this.qtip().hide();
-							console.log('hide');
-						}
-						this.attr('_x_first', true);					
-					},
-					hide: function(event, api) {
-					   console.log('hide done');
-			        }
+	   content: '.',
+	   position: {
+              		my: 'bottom center',
+					at: 'center',
+					target: 'mouse',
+					viewport: $(window)
+                  },
+        style: { 
+  			classes: 'qtip-shadow qtip-rounded qtipex',
+  			width: '400px',
+			tip: false
+			},
+		show: {
+			ready:false,
+			delay: 10,
+			event: false
+		},
+		hide: {
+			delay:1000
+		},
+		events:{
+			move: function(){
+				var first = this.attr('_x_first');
+				console.log('move');
+				console.log(first);
+				if(first){
+					this.qtip().hide();
+					console.log('hide');
 				}
-			});
+				this.attr('_x_first', true);					
+			},
+			hide: function(){
+				this.attr('_x_first', false);
+			}
+		}
+	});
+
 var bodyTipApi = bodytip.qtip('api');
-bodyTipApi.render();
