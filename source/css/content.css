@@ -1,3 +1,11 @@
+.qtipex{
+	border-radius: 5px;
+	border:7px #A2D959 solid;
+	margin-bottom: 100px;
+	max-width: 600px;
+	min-width: 400px;
+  }
+
 .tip-content h4{
 	margin: 5px auto;
 	font: bolder 14px tahoma;

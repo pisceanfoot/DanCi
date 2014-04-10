@@ -76,7 +76,7 @@ var danciDict = {
 		    		var word = _this.data(resource.SAVE_HIGHLIGHT_WORD);
 		    		if(key.toLowerCase() == word.toLowerCase()){
 						var className = _this.attr('class');
-						$('.' + className).qtip('destroy');
+						$('.' + className).qtip().destroy();
 						highlight.remove(className);
 					}
 		    	});
@@ -100,7 +100,7 @@ var danciDict = {
 			}
 			if(key.toLowerCase() == word.toLowerCase()){
 				var className = _this.attr('class');
-				$('.' + className).qtip('destroy');
+				$('.' + className).qtip().destroy();
 				highlight.remove(className);
 			}
 		});
@@ -120,43 +120,6 @@ var danciDict = {
 			var newClassItem = highlight.process(word);
 			danciDict.onQuery(result);
 			danciDict.onTip(newClassItem, result);
-
-			$('body').qtip({
-			   content: danciDict.itemString(result),
-			   position: {
-	                  		corner: {
-	                  			tooltip: 'bottomMiddle',
-		                     	target: 'topMiddle'
-		                  	},
-		                  	target: 'mouse',
-		                  	adjust: {
-								screen: true,
-								mouse: true
-							}
-		                  },
-	            style: { 
-	      			name: 'cream',
-	      			width: '400px',
-	      			border: {
-				         width: 7,
-				         radius: 5,
-				         color: '#A2D959'
-				      }
-	   			},
-			   	hide: {
-			   		when:{
-			   			target:$('.' + newClassItem),
-			   			event: 'dblclick'
-			   		}
-			   	},
-			   	show: { 
-			   		ready: true,
-			   		delay: 1,
-			   		when: {
-			   			event: false
-			   		}
-			   	}
-			});
 		}});
 	},
 
@@ -174,43 +137,32 @@ var danciDict = {
 		}
 	},
 
-	onTip: function (selectItem, item, autoShow, target) {
+	onTip: function (selectItem, item) {
 		var highlightItem = $('.' + selectItem);
 		highlightItem.data(resource.SAVE_HIGHLIGHT_WORD, item.word);
 		
 		highlightItem.qtip({
 		   content: danciDict.itemString(item),
 		   position: {
-                  		corner: {
-                  			tooltip: 'bottomMiddle',
-	                     	target: 'topMiddle'
-	                  	},
-	                  	adjust: {
-							screen: true
+                  		my: 'bottom center',
+						at: 'center',
+						viewport: $(window),
+						adjust: {
+							y: -10
 						}
 	                  },
             style: { 
-      			name: 'cream',
+      			classes: 'qtip-shadow qtip-rounded qtipex',
       			width: '400px',
-      			border: {
-			         width: 7,
-			         radius: 5,
-			         color: '#A2D959'
-			      }
+				tip: false
    			},
-		   	hide: 'mouseout',
-		   	show: { 
-		   		ready: autoShow,
-		   		when: {
-		   			target: target,
-		   			event: 'mouseover'
-		   		}
-		   	},
-		   	api:{
-		   		onShow:function(){
-		   			$('body').qtip('destroy');
-		   		}
-		   	}
+   			show: {
+   				event: 'mouseenter'
+   			},
+   			hide: {
+   				event: 'mouseleave',
+   				delay: 100
+   			}
 		});
 
 		highlightItem.mouseenter(danciDict.onTipMouseEnter);
@@ -271,7 +223,7 @@ var danciDict = {
 
 		// destory qtip
 		var className = _this.attr('class');
-		$('.' + className).qtip('destroy');
+		$('.' + className).qtip().destroy();
 
 		// remove highlight
 		highlight.remove(className);
