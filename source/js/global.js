@@ -184,7 +184,7 @@ var danciStorage = {
   */
   init: function () {
     //danciStorage.storage = window.localStorage;
-    danciStorage.storage = chrome.storage.local;
+    danciStorage.storage = chrome.storage.sync;
   },
 
   /*

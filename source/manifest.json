@@ -12,7 +12,7 @@
       "matches": [ "\u003Call_urls>" ],
       "run_at": "document_idle"
    } ],
-   "description": "词霸, 轻松背单词",
+   "description": "词霸, 翻译、生词管理，轻松背单词。",
    "icons": {
       "128": "img/sw_128.png",
       "16": "img/sw_16.png",
@@ -22,6 +22,7 @@
    },
    "manifest_version": 2,
    "name": "词霸",
+   "short_name": "词霸",
    "omnibox": {
       "keyword": "danci"
    },
