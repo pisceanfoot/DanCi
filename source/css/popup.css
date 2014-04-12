@@ -66,9 +66,14 @@ li{
 	border-top-right-radius: 5px;
 	float: left;
 	list-style: none;
+	height: 23px;
+	margin: 0px 1px;
+	cursor: pointer;
+}
+
+#main_container .header_container ul li.active{
 	color: #1eb2ff;
 	background: #fafcff;
-	height: 23px;
 }
 
 .search_container {
@@ -192,3 +197,6 @@ li{
 	margin: 2px 5px;
 }
 
+#option_container{
+	display: none;
+}

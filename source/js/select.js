@@ -5,6 +5,8 @@ var selectWord = {
 
 	enabled: true,
 
+	ctrlkey: false,
+
 	/*
 	* @description init
 	*/
@@ -16,6 +18,9 @@ var selectWord = {
 		if(config){
 			if(config.onSelect){
 				selectWord.onSelect = config.onSelect;
+				selectWord.ctrlkey = config.ctrlkey;
+
+				selectWord.ctrlkey = true;
 			}
 		}
 	},
@@ -35,9 +40,13 @@ var selectWord = {
 
 		$('body').dblclick(selectNode);
 
-		function selectNode () {
+		function selectNode (event) {
 			if(!selectWord.enabled){
 				selectWord.enabled = true;
+				return;
+			}
+
+			if(selectWord.ctrlkey && !event.originalEvent.ctrlKey){
 				return;
 			}
 

@@ -160,6 +160,37 @@ var popup = {
 	}
 };
 
+/*
+* @description popupUI
+*/
+var popupUI = {
+	/*
+	* @description init
+	*/
+	init: function () {
+		$('.header_container ul li').click(function () {
+			var _this = $(this);
+			if(_this.hasClass('active')) return;
+
+			var data = _this.attr('data');
+
+			$(".header_container ul li").removeClass('active');
+			if(data == 'translate'){
+				_this.addClass('active');
+
+				$('#word_container').show();
+				$('#option_container').hide();
+			}else if(data == 'option'){
+				_this.addClass('active');
+
+				$('#word_container').hide();
+				$('#option_container').show();
+			}
+		})
+	}
+};
+
 $(function(){
+	popupUI.init();
 	popup.init();
 });
