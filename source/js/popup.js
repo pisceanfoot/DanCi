@@ -72,7 +72,7 @@ var popup = {
 				}
 
 				var str = '<div class="item" w="{0}">\
-					        <div class="word"><h4>{0} [{1}]</h4><a href="#" class="pron"></a>\
+					        <div class="word"><h4>{0}{1}</h4><a href="#" class="pron"></a>\
 					            <div class="right">\
 					                <span></span><a class="del" href="#"></a>\
 					            </div>\
@@ -82,7 +82,11 @@ var popup = {
 					        </ul>\
 					    </div>';
 
-				str = $.framework.format(str, item.word, decodeURIComponent(item.ps), array.join(''));
+				var ps = item.ps;
+				if(ps){
+					ps = ' [' + ps + ']';
+				}
+				str = $.framework.format(str, item.word, decodeURIComponent(ps), array.join(''));
 				all.push(str);
 			}
 

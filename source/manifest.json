@@ -1,4 +1,7 @@
 {
+   "background": {
+    "scripts": ["js/background.js"]
+  },
    "browser_action": {
       "all_frames": true,
       "default_icon": "img/sw_19.png",
@@ -26,7 +29,7 @@
    "omnibox": {
       "keyword": "danci"
    },
-   "permissions": [ "*://*/*", "unlimitedStorage", "notifications", "bookmarks", "tabs", "contextMenus", "storage" ],
+   "permissions": [ "*://*/*", "unlimitedStorage", "notifications", "tabs", "contextMenus", "storage" ],
    "update_url": "http://clients2.google.com/service/update2/crx",
    "version": "0.1"
 }

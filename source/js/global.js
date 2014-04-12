@@ -6,8 +6,8 @@ var log = {
 		console.error(arg);
 	},
 	debug: function (arg) {
-        if(config.isDebug)
-		  console.debug(arg);
+      if(config.isDebug)
+        console.debug(arg);
 	}
 };
 

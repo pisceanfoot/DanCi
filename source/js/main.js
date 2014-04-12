@@ -31,7 +31,6 @@ var danciDict = {
 		//if(config){
 			// TODO
 		//}
-
 		danciDict.showHistory();
 	},
 
@@ -119,6 +118,18 @@ var danciDict = {
 		bingDict.query({word: word, callback: function(result){
 			//result: {word:, tt:[fanyi], ps:'pronounce', pron:'mp3'}
 			// tt: {acceptation: ,pos:}
+			log.debug((result));
+			if(!result || !result.tt || !result.tt.length){
+				// 没有翻译
+				bodyTipApi.set('content.text', '<div class="tip-content"><h4>没有翻译</h4</div>');
+				bodyTipApi.show();
+
+				setTimeout(function () {
+					bodyTipApi.hide();
+				}, 800);
+				return;
+			}
+
 			var newClassItem = highlight.process(word);
 			danciDict.onQuery(result);
 			danciDict.onTip(newClassItem, result);
@@ -281,8 +292,12 @@ var danciDict = {
 			});
 		}
 
-		var str = '<div class="tip-content"><h4>{0} [{1}]</h4><ul>{2}</ul></div>';
-		str = $.framework.format(str, item.word, decodeURIComponent(item.ps), array.join(''));
+		var str = '<div class="tip-content"><h4>{0}{1}</h4><ul>{2}</ul></div>';
+		var ps = item.ps;
+		if(ps){
+			ps = ' [' + ps + ']';
+		}
+		str = $.framework.format(str, item.word, decodeURIComponent(ps), array.join(''));
 
 		return str;
 	},
@@ -315,15 +330,34 @@ chrome.runtime.onMessage.addListener(
     	return;
     }
 
-    // else from extension
-    if(!request.from || request.from != "popup"){
-    	return;
-    }
-
-    if(request.action == 'delete'){
-    	danciDict.onItemDelete(request.word);
-    }
+   	for(var key in action){
+   		action[key](request, sendResponse);
+   	}
   });
+
+var action = {
+	itemDelete: function (request, sendResponse) {
+		// else from extension
+	    if(!request.from || request.from != "popup"){
+	    	return;
+	    }
+
+	    if(request.action == 'delete'){
+	    	danciDict.onItemDelete(request.word);
+	    }
+	},
+
+	getSelection: function (request, sendResponse) {
+		// else from extension
+	    if(!request.from || request.from != "background"){
+	    	return;
+	    }
+
+	    if(request.action == 'getSelection'){
+	    	sendResponse({data: window.getSelection().toString()});
+	    }
+	}
+};
 
 
 var bodytip = $('body').qtip({
