@@ -15,6 +15,7 @@
       "matches": [ "\u003Call_urls>" ],
       "run_at": "document_idle"
    } ],
+   "options_page": "html/option.html",
    "description": "词霸, 翻译、生词管理，轻松背单词。",
    "icons": {
       "128": "img/sw_128.png",

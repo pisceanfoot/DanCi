@@ -1,0 +1,96 @@
+body{
+	margin:0px;
+	background-color: #E8F5F9;
+	overflow: auto;
+}
+
+.main{
+	border-radius: 6px;
+	background-color: #fafcff;
+	width: 614px;
+	border: 2px solid rgba(34, 40, 44, 0.38);
+	margin: 40px auto 20px auto;
+}
+
+.header{
+	background-color:#377bee;
+	height: 38px;
+}
+
+.header .title{
+	color:white;
+	font-size: 20px;
+	margin: 10px auto 5px 5px;
+	position: relative;
+	top:10px;
+
+}
+
+.content .row{
+	padding: 10px 0;
+}
+
+.col1{
+	float: left;
+	width: 190px;
+	padding-left: 24px;
+	padding-top: 6px;
+}
+
+.col2{
+	overflow: hidden;
+}
+
+.col2 .radio{
+	padding: 5px 0;
+}
+
+.footer{
+	background-color: #ebebeb;
+	margin-top: 20px;
+}
+.footer .copyright{
+	color:#A2AEB5;
+	padding: 20px 10px;
+}
+
+
+input[type=radio], input[type=checkbox] {
+  display: none;
+}
+label {
+  cursor: pointer;
+  display: inline-block;
+  vertical-align: top;
+}
+input[type=radio] + label:before {
+  background-image: url(../img/radio.png);
+  background-repeat: no-repeat;
+  background-size: 16px 16px;
+  content: "";
+  display: inline-block;
+  height: 16px;
+  width: 16px;
+}
+input[type=radio]:checked + label:before {
+  background-image: url(../img/radio-dot.png), url(../img/radio.png);
+  background-position: 5px, 0;
+  background-size: 6px 7px, 16px 16px;
+}
+input[type=radio] + label {
+  height: 16px;
+  line-height: 16px;
+}
+
+.radio {
+  padding: 6px 0;
+}
+.radio:first-child {
+  padding-top: 0;
+}
+.radio:last-child {
+  padding-bottom: 0;
+}
+input[type=radio] + label:before {
+  margin-right: 36px;
+}
