@@ -40,13 +40,16 @@ li{
 	font-size: 20px;
 }
 
-#main_container .header_container .pingjia{
-	color: #fff;
-	margin-top: 10px;
-	margin-right: 10px;
-	white-space: nowrap;
-	overflow: hidden;
-	font-size: 14px;
+#main_container .header_container .option{
+color: #FFF;
+margin-top: 10px;
+margin-right: 10px;
+white-space: nowrap;
+overflow: hidden;
+font-size: 16px;
+padding-left: 25px;
+/*background: url(../img/option.png) 0px 1px no-repeat;*/
+line-height: 21px;
 }
 
 #main_container .header_container ul{
@@ -72,7 +75,7 @@ li{
 }
 
 #main_container .header_container ul li.active{
-	color: #1eb2ff;
+	color: #138DE1;
 	background: #fafcff;
 }
 
