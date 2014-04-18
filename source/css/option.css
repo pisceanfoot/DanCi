@@ -1,26 +1,67 @@
 body{
 	margin:0px;
-	background-color: #E8F5F9;
 	overflow: auto;
+	background: url(../img/pop_bg2.png) no-repeat top center;
 }
 
 .main{
 	border-radius: 6px;
-	background-color: #fafcff;
+	background:url(../img/pop_bg.png) repeat;
 	width: 614px;
-	border: 2px solid rgba(34, 40, 44, 0.38);
-	margin: 40px auto 20px auto;
+	margin: 70px auto 0px auto;
+	padding-left: 30px;
+	border-radius: 6px;
+	padding-right: 30px;
 }
-
+.content{
+	margin-top: 10px;
+	overflow: hidden;
+	padding-bottom: 10px;
+}
+.option_col a{
+	padding:0 20px;
+	height: 33px;
+	text-align: center;
+	font: 16px/33px microsoft yahei;
+	float: left;
+	margin-right: 20px;
+	border-radius: 3px;
+	text-decoration: none;
+}
+.option_col_title{
+	color: #fff;
+}
+.option_col{
+	margin-bottom: 18px;
+	border-bottom: 2px solid #2E94CF;
+	padding-bottom: 20px;
+	overflow: hidden;
+}
+.option_col_last{
+	border:none;
+	margin-bottom: 0;
+}
+.option_col .normal.green{
+	color: #507305;
+	background: -webkit-gradient(linear, 0 0, 0 100%, from(#addd2f), to(#88ca13));;
+}
+.option_col .normal.org{
+	color: #886a20;
+	background: -webkit-gradient(linear, 0 0, 0 100%, from(#e6ce65), to(#f1b725));;
+}
+.option_col .normal.dis{
+	color: #BFE2F5;
+	background: -webkit-gradient(linear, 0 0, 0 100%, from(#5abcf5), to(#5abcf5));;
+}
 .header{
-	background-color:#377bee;
 	height: 38px;
+	padding-top: 10px;
 }
 
 .header .title{
 	color:white;
 	font-size: 20px;
-	margin: 10px auto 5px 5px;
+	margin: 10px auto 5px 0px;
 	position: relative;
 	top:10px;
 
@@ -33,7 +74,6 @@ body{
 .col1{
 	float: left;
 	width: 190px;
-	padding-left: 24px;
 	padding-top: 6px;
 }
 
@@ -46,14 +86,18 @@ body{
 }
 
 .footer{
-	background-color: #ebebeb;
+	/*background-color: #ebebeb;*/
 	margin-top: 20px;
 }
 .footer .copyright{
 	color:#A2AEB5;
 	padding: 20px 10px;
 }
-
+.option_title{
+	margin-bottom: 10px;
+	font-size: 14px;
+	color: #fff;
+}
 
 input[type=radio], input[type=checkbox] {
   display: none;
@@ -93,4 +137,10 @@ input[type=radio] + label {
 }
 input[type=radio] + label:before {
   margin-right: 36px;
+}
+.short_input{
+	height: 31px;
+	border:none;
+	padding-left: 10px;
+	color: #507305;
 }

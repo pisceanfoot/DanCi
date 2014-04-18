@@ -7,62 +7,34 @@
 <body>
 	<div class="main">
 		<div class="header">
-			<span class="title">词霸翻译选项</span>
+			<span class="title">词霸翻译选项：</span>
 		</div>
 		<div class="content">
 			<div class="optionContainer">
-				<div class="row">
-					<div class="col1">关闭词霸翻译：</div>
-					<div class="col2">
-						<div class="radio">
-							<input type="radio" value="dblclick" id="dblclick" />
-							<label for="dblclick">关闭</label>
-						</div>
-						<div class="radio">
-							<input type="radio" value="ctrl_dblclick" id="ctrl_dblclick" />
-							<label for="dblclick">开启</label>
-						</div>
-					</div>
+				<div class="option_col">
+					<div class="option_title">词霸开关：</div>
+					<a href="#" class="normal green">开启词霸</a>
+					<a href="#" class="normal dis">关闭词霸</a>
 				</div>
-				<div class="row">
-					<div class="col1">快捷操作</div>
-					<div class="col2">
-						<div class="radio">
-							<input type="radio" value="dblclick" id="dblclick" />
-							<label for="dblclick">关闭</label>
-						</div>
-						<div class="radio">
-							<input type="radio" value="ctrl_dblclick" id="ctrl_dblclick" />
-							<label for="dblclick">开启取词</label>
-							<input type="text" />
-						</div>
-					</div>
+				<div class="option_col">
+					<div class="option_title">取词开关：</div>
+					<a href="#" class="normal dis">开启取词</a>
+					<a href="#" class="normal org">关闭取词</a>
 				</div>
-				<div class="row">
-					<div class="col1">取词方式：</div>
-					<div class="col2">
-						<div class="radio">
-							<input type="radio" value="dblclick" id="dblclick" />
-							<label for="dblclick">双击取词</label>
-						</div>
-						<div class="radio">
-							<input type="radio" value="ctrl_dblclick" id="ctrl_dblclick" />
-							<label for="dblclick">Ctrl + 双击取词</label>
-						</div>
-						<div class="radio">
-							<input type="radio" value="mouse" id="mouse" />
-							<label for="dblclick">划词取词</label>
-						</div>
-						<div class="radio">
-							<input type="radio" value="mouse" id="mouse" />
-							<label for="dblclick">Ctrl + 划词取词</label>
-						</div>
-					</div>
+				<div class="option_col">
+					<div class="option_title">取词方式：</div>
+					<a href="#" class="normal dis">双击取词</a>
+					<a href="#" class="normal green">Ctrl + 双击取词</a>
+					<a href="#" class="normal dis">划词取词</a>
+					<a href="#" class="normal dis">Ctrl + 划词取词</a>
+				</div>
+				<div class="option_col option_col_last">
+					<div class="option_title">快捷键开关：</div>
+					<a href="#" class="normal dis">开启</a>
+					<a href="#" class="normal green">关闭</a>
+					<input type="text" value="" class="short_input" placeHolder="Ctrl...">
 				</div>
 			</div>
-		</div>
-		<div class="footer">
-			<div class="copyright">词霸翻译 &copy; 2014</div>
 		</div>
 	</div>
 </body>
