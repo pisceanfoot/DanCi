@@ -4,6 +4,9 @@
 	<title>选项</title>
 	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 	<link rel="stylesheet" type="text/css" href="../css/option.css" />
+	<script type="text/javascript" src="../js/jquery-1.7.2.min.js"></script>
+	<script type="text/javascript" src="../js/global.js"></script>
+	<script type="text/javascript" src="../js/option.js"></script>
 <body>
 	<div class="main">
 		<div class="header">
@@ -13,26 +16,26 @@
 			<div class="optionContainer">
 				<div class="option_col">
 					<div class="option_title">词霸开关：</div>
-					<a href="#" class="normal green">开启词霸</a>
-					<a href="#" class="normal dis">关闭词霸</a>
-				</div>
-				<div class="option_col">
-					<div class="option_title">取词开关：</div>
-					<a href="#" class="normal dis">开启取词</a>
-					<a href="#" class="normal org">关闭取词</a>
+					<a href="#" name="open" id="open" class="normal green">开启词霸</a>
+					<a href="#" name="open" id="close" class="normal dis">关闭词霸</a>
 				</div>
 				<div class="option_col">
 					<div class="option_title">取词方式：</div>
-					<a href="#" class="normal dis">双击取词</a>
-					<a href="#" class="normal green">Ctrl + 双击取词</a>
-					<a href="#" class="normal dis">划词取词</a>
-					<a href="#" class="normal dis">Ctrl + 划词取词</a>
+					<a href="#" name="quci_method" id="quci_dblclick" class="normal green">双击取词</a>
+					<a href="#" name="quci_method" id="quci_ctrl_dblclick" class="normal dis">Ctrl + 双击取词</a>
+					<a href="#" name="quci_method" id="quci_mouse" class="normal dis">划词取词</a>
+					<a href="#" name="quci_method" id="quci_ctrl_mouse" class="normal dis">Ctrl + 划词取词</a>
+				</div>
+				<div class="option_col">
+					<div class="option_title">取词朗读：</div>
+					<a href="#" name="quci_pron" id="quci_pron_open" class="normal green">开启</a>
+					<a href="#" name="quci_pron" id="quci_pron_close" class="normal dis">关闭</a>
 				</div>
 				<div class="option_col option_col_last">
 					<div class="option_title">快捷键开关：</div>
-					<a href="#" class="normal dis">开启</a>
-					<a href="#" class="normal green">关闭</a>
-					<input type="text" value="" class="short_input" placeHolder="Ctrl...">
+					<a href="#" name="quci_shortcut" id="shortcut_open" class="normal dis">开启</a>
+					<a href="#" name="quci_shortcut" id="shortcut_close" class="normal green">关闭</a>
+					<input id="shortcut" type="text" disabled="disabled" class="short_input hasDefaultText" value="Ctrl+X" defaultValue="Ctrl+X">
 				</div>
 			</div>
 		</div>

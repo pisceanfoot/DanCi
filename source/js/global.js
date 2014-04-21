@@ -1,3 +1,13 @@
+var config = {
+  isDebug: true
+}
+
+var resource = {
+  CONFIG_SETTING_KEY: "Setting_4C6B301702544FBFAB286DE34F6B2AB3",
+  SAVE_HIGHLIGHT_WORD : "save_highlight_word"
+}
+
+
 var log = {
 	log: function (arg) {
 		console.log(arg);
@@ -44,32 +54,6 @@ var log = {
             return str;
         }
     };
-
-    /*
-    * dot.js
-    */
-    var dot_savedTemplate = {};
-    $.framework.t = function(templateId, data, appendTo) {
-        function engin(templateId, data) {
-            var key = "DOT_T_" + templateId;
-            var t = dot_savedTemplate[key];
-            if (!t) {
-                var strTemplate = $(templateId);
-                if (!strTemplate.length) {
-                    return;
-                }
-                strTemplate = strTemplate.html();
-                t = doT.template(strTemplate);
-                dot_savedTemplate[key] = t;
-            }
-            return t(data);
-        }
-        var html = engin(templateId, data);
-        if (html) {
-            $(appendTo).append(html);
-        }
-    };
-
 })(jQuery);
 
 (function($){

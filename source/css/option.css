@@ -28,6 +28,10 @@ body{
 	border-radius: 3px;
 	text-decoration: none;
 }
+
+.option_col a.green{
+	cursor: not-allowed;
+}
 .option_col_title{
 	color: #fff;
 }
