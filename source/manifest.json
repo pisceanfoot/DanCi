@@ -32,5 +32,5 @@
    },
    "permissions": [ "*://*/*", "unlimitedStorage", "notifications", "tabs", "contextMenus", "storage" ],
    "update_url": "http://clients2.google.com/service/update2/crx",
-   "version": "0.1"
+   "version": "0.3"
 }
