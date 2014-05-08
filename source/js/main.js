@@ -1,6 +1,6 @@
 function main () {
-	danciDict.init();
 	danciDict.run();
+	danciDict.init();
 }
 
 
@@ -20,18 +20,38 @@ var danciDict = {
 	_running: false,
 
 	/*
+	* @private
+	* @description 用户设置
+	*/
+	_setting : null,
+
+	/*
 	* @description init
 	*/
 	init: function () {
 		danciStorage.init();
-		danciStorage.onChange(danciDict.onStorageChanged);
-		selectWord.init({onSelect: danciDict.onSelect});
+		danciStorage.get(resource.CONFIG_SETTING_KEY, function (result) {
 
-		//var config = danciStorage.get(resource.CONFIG_SETTING_KEY);
-		//if(config){
-			// TODO
-		//}
-		danciDict.showHistory();
+			if(result){
+				var value = result.value;
+
+				danciDict._running = value.open == "open";
+				danciDict._setting = {};
+				danciDict._setting.open = danciDict._running;
+				danciDict._setting.quci_method = value.quci_method;
+				danciDict._setting.quci_pron = value.quci_pron == "quci_pron_open";
+				danciDict._setting.quci_shortcut = value.quci_shortcut;
+			}
+
+			log.debug(value);
+
+			danciStorage.onChange(danciDict.onStorageChanged);
+			selectWord.init({onSelect: danciDict.onSelect, setting: danciDict._setting});
+
+			if(danciDict._running){
+				danciDict.showHistory();
+			}
+		});	
 	},
 
 	/*
@@ -53,6 +73,7 @@ var danciDict = {
 			setTimeout(function(){
 				$.each(alllitems, function(i, e){
 					if(!e.value) return;
+					if(!e.value.fanyi) return;
 					
 					var selectedItem = highlight.process(e.key);
 					danciDict.onTip(selectedItem, e.value.fanyi);
@@ -233,7 +254,15 @@ var danciDict = {
 	/*
 	* @description click tip remove saved
 	*/
-	onTipClick: function () {
+	onTipClick: function (event) {
+		if(!danciDict._running){
+			return;
+		}
+
+		if(danciDict._setting && danciDict._setting.quci_method == "quci_ctrl_dblclick" && !event.originalEvent.ctrlKey){
+			return;
+		}
+
 		// remove
 		if(danciDict._playAudioTimer){
 			clearTimeout(danciDict._playAudioTimer);
@@ -306,7 +335,13 @@ var danciDict = {
 	* @description play mp3
 	*/
 	play: function (src) {
-		$.playAudio(src).play();
+		if(danciDict._setting){
+			if(danciDict._setting.quci_pron){
+				$.playAudio(src).play();	
+			}
+		}else{
+			$.playAudio(src).play();
+		}
 	},
 
 	/*

@@ -1,5 +1,5 @@
 var config = {
-  isDebug: true
+  isDebug: false
 }
 
 var resource = {
@@ -262,8 +262,10 @@ var danciStorage = {
         var r = {};
         r.key = d;
         r.value = save.value;
-        if(condition.namespace && save.ns && condition.namespace == save.ns){
-          data.push(r);
+        if(condition.namespace){
+          if(save.ns && condition.namespace == save.ns){
+            data.push(r);
+          }
         }else{
           data.push(r);
         }

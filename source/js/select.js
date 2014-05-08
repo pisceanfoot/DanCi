@@ -7,6 +7,8 @@ var selectWord = {
 
 	ctrlkey: false,
 
+	setting: null,
+
 	/*
 	* @description init
 	*/
@@ -18,9 +20,12 @@ var selectWord = {
 		if(config){
 			if(config.onSelect){
 				selectWord.onSelect = config.onSelect;
-				selectWord.ctrlkey = config.ctrlkey;
 
-				selectWord.ctrlkey = true;
+				selectWord.setting = config.setting;
+				if(selectWord.setting){
+					selectWord.ctrlkey = config.setting.quci_method == "quci_ctrl_dblclick";
+					selectWord.enabled = config.setting.open;
+				}
 			}
 		}
 	},
