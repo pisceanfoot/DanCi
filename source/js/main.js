@@ -30,28 +30,32 @@ var danciDict = {
 	*/
 	init: function () {
 		danciStorage.init();
-		danciStorage.get(resource.CONFIG_SETTING_KEY, function (result) {
+		setTimeout(function(){
+			danciStorage.get(resource.CONFIG_SETTING_KEY, function (result) {
 
-			if(result){
-				var value = result.value;
+				if(result){
+					var value = result.value;
 
-				danciDict._running = value.open == "open";
-				danciDict._setting = {};
-				danciDict._setting.open = danciDict._running;
-				danciDict._setting.quci_method = value.quci_method;
-				danciDict._setting.quci_pron = value.quci_pron == "quci_pron_open";
-				danciDict._setting.quci_shortcut = value.quci_shortcut;
-			}
+					danciDict._running = value.open == "open";
+					danciDict._setting = {};
+					danciDict._setting.open = danciDict._running;
+					danciDict._setting.quci_method = value.quci_method;
+					danciDict._setting.quci_pron = value.quci_pron == "quci_pron_open";
+					danciDict._setting.quci_shortcut = value.quci_shortcut;
+				}
 
-			log.debug(value);
+				log.debug(value);
 
-			danciStorage.onChange(danciDict.onStorageChanged);
-			selectWord.init({onSelect: danciDict.onSelect, setting: danciDict._setting});
+				danciStorage.onChange(danciDict.onStorageChanged);
+				selectWord.init({onSelect: danciDict.onSelect, setting: danciDict._setting});
 
-			if(danciDict._running){
-				danciDict.showHistory();
-			}
-		});	
+				if(danciDict._running){
+					danciDict.showHistory();
+				}
+			});	
+
+			console.log('init done');
+		}, 500);
 	},
 
 	/*
