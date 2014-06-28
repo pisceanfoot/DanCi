@@ -52,9 +52,7 @@ var danciDict = {
 				if(danciDict._running){
 					danciDict.showHistory();
 				}
-			});	
-
-			console.log('init done');
+			});				
 		}, 500);
 	},
 
@@ -75,13 +73,28 @@ var danciDict = {
 			if(!alllitems) return;
 
 			setTimeout(function(){
+				var array = [];
+				var arrayKey = [];
 				$.each(alllitems, function(i, e){
 					if(!e.value) return;
 					if(!e.value.fanyi) return;
 					
-					var selectedItem = highlight.process(e.key);
-					danciDict.onTip(selectedItem, e.value.fanyi);
+					array.push(e);
+					arrayKey.push(e.key);
 				});	
+
+				highlight.processAll(arrayKey, function(word, newClass){
+
+					$.each(array, function(i, e){
+
+						if(e.key == word){
+							danciDict.onTip(newClass, e.value.fanyi);		
+						}
+					})
+				});
+
+				delete array;
+				delete arrayKey;
 			}, 500);
 		});
 	},

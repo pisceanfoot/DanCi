@@ -45,6 +45,30 @@ var highlight = {
 	},
 
     /*
+    * @description process all item, set tool tip on highlight word
+    */
+    processAll: function (wordList, tipCallback) {
+        
+        $('body').highlightAllSearchTerms({
+            terms: wordList
+        }, function(word){
+            var color = highlight._word[word];
+
+            if(!color){
+                color = highlight._getColor(word);
+                highlight._word[word] = color;
+            }
+
+            var newClass = 'danci_highlight' + color[0];
+            var bkColor = $.framework.format("background-color:hsl({0})", color[1]);
+
+            return {className: newClass, style: bkColor};
+        }, function(word, newClass){
+            tipCallback(word, newClass);
+        });
+    },
+
+    /*
     * @description remove highlight
     */
     remove: function (selectedItem) {

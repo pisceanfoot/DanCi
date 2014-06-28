@@ -142,6 +142,51 @@ var log = {
       return this;
   };
 
+  $.fn.highlightAllSearchTerms = function (options, settingCallback, tipCallback) {
+      var o = $.extend({}, $.fn.highlightSearchTerms.defaults, options),
+        terms,
+        t,
+        c,
+        s,
+        r,
+        highlighted;
+
+        terms = o.terms;
+        // Highlight terms
+        if (terms !== "") {
+          t = o.tagName;
+          this.find(":not(iframe, option, script, textarea)").contents().each(function () {
+
+                _this = this;
+                $.each(terms, function(i, term){
+                  var saved = encodeEntities(_this.nodeValue);
+                  if(!saved){
+                    return;
+                  }
+                  if(saved.indexOf(term) != -1){
+                    return;
+                  }
+
+                  r = settingCallback(term);
+                  c = r.className;
+                  s = r.style;
+
+                  var regterm = new RegExp("(" + term + ")", "gi");
+                  highlighted = "<" + t + " class=\"" + c + "\" style=\"" + s + "\">$1</" + t + ">";
+                  
+                  var s = saved.replace(regterm, highlighted);
+                  if(s != saved){
+                    $(_this).replaceWith(s);
+                    tipCallback(term, c);  
+                  }
+                });
+          });
+        }
+
+        return this;
+    };
+
+
   // Public: default options
   $.fn.highlightSearchTerms.defaults = {
     tagName:          "span",
