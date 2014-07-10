@@ -153,12 +153,19 @@ var log = {
 
         terms = o.terms;
         // Highlight terms
-        if (terms !== "") {
+        if (terms && terms.length) {
           t = o.tagName;
-          this.find(":not(iframe, option, script, textarea)").contents().each(function () {
+
+          //return this;
+          this.find(":not(iframe, option, script, textarea)").contents().filter(function(){
+            return this.nodeType == 3;
+          }).each(function () {
 
                 _this = this;
                 $.each(terms, function(i, term){
+                  if(!_this.nodeValue){
+                    return;
+                  }
                   var saved = encodeEntities(_this.nodeValue);
                   if(!saved){
                     return;
