@@ -162,15 +162,20 @@ var log = {
           }).each(function () {
 
                 _this = this;
+                
+                if(!_this.nodeValue){
+                  return;
+                }
+
                 $.each(terms, function(i, term){
-                  if(!_this.nodeValue){
-                    return;
-                  }
-                  var saved = encodeEntities(_this.nodeValue);
+                  
+                  //var saved = encodeEntities(_this.nodeValue);
+                  var saved = _this.nodeValue;
+                  
                   if(!saved){
                     return;
                   }
-                  if(saved.indexOf(term) != -1){
+                  if(saved.indexOf(term) == -1){
                     return;
                   }
 
