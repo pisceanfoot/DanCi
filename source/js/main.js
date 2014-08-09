@@ -272,11 +272,13 @@ var danciDict = {
 	* @description click tip remove saved
 	*/
 	onTipClick: function (event) {
+		
 		if(!danciDict._running){
 			return;
 		}
 
-		if(danciDict._setting && danciDict._setting.quci_method == "quci_ctrl_dblclick" && !event.originalEvent.ctrlKey){
+		if(danciDict._setting && danciDict._setting.quci_method == "quci_ctrl_dblclick" && 
+			(!event.originalEvent.ctrlKey && !event.originalEvent.metaKey)){
 			return;
 		}
 

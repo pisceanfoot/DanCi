@@ -51,7 +51,8 @@ var selectWord = {
 				return;
 			}
 
-			if(selectWord.ctrlkey && !event.originalEvent.ctrlKey){
+			if(selectWord.ctrlkey && 
+				(!event.originalEvent.ctrlKey && !event.originalEvent.metaKey)){
 				return;
 			}
 
