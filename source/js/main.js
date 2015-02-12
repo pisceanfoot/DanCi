@@ -42,6 +42,7 @@ var danciDict = {
 					danciDict._setting.quci_method = value.quci_method;
 					danciDict._setting.quci_pron = value.quci_pron == "quci_pron_open";
 					danciDict._setting.quci_shortcut = value.quci_shortcut;
+					danciDict._setting.quci_huaci = value.quci_huaci;
 				}
 
 				log.debug(value);

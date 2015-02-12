@@ -9,6 +9,8 @@ var selectWord = {
 
 	setting: null,
 
+	huaci: false,
+
 	/*
 	* @description init
 	*/
@@ -25,6 +27,8 @@ var selectWord = {
 				if(selectWord.setting){
 					selectWord.ctrlkey = config.setting.quci_method == "quci_ctrl_dblclick";
 					selectWord.enabled = config.setting.open;
+
+					selectWord.huaci = config.setting.quci_huaci == "quci_huaci_open";
 				}
 			}
 		}
@@ -51,6 +55,7 @@ var selectWord = {
 				return;
 			}
 
+			// ctrl key pressed
 			if(selectWord.ctrlkey && 
 				(!event.originalEvent.ctrlKey && !event.originalEvent.metaKey)){
 				return;
@@ -69,6 +74,50 @@ var selectWord = {
 				selectWord.onSelect(selectValue, selectNode);
 			}
 		}
+
+		var onMouseDown = false;
+		var onMouseMove = false;
+		$('body').mousedown(function(){
+			onMouseDown = true;
+		});
+
+		$('body').mousemove(function(){
+			if(onMouseDown){
+				onMouseMove = true;
+			}
+		});
+
+		$('body').mouseup(function () {
+			if(onMouseDown && onMouseMove){
+				onMouseDown = false;
+				onMouseMove = false;
+
+				if(!selectWord.enabled){
+					selectWord.enabled = true;
+					return;
+				}
+
+				if(!selectWord.huaci){
+					return;
+				}
+
+				var selection = selectWord._getSelectContext();
+				if(!selection) return;
+				// None/Cart/Range
+				if(selection.type != "Range") return;
+
+				var selectValue = selection.toString();
+				var selectNode = selection.anchorNode.parentNode;
+				selectValue = $.trim(selectValue);
+
+				if(selectValue && selectWord.onSelect){
+					selectWord.onSelect(selectValue, selectNode, 'huaci');
+				}
+			}
+
+			onMouseDown = false;
+			onMouseMove = false;
+		});
 	},
 
 	/*
