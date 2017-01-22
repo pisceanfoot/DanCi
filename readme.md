@@ -15,3 +15,5 @@ easy useage
 	- V0.1版本发布 Chrome 商店
 	- 双击取词
 	- 保存生词
+
+	

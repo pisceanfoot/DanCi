@@ -87,10 +87,16 @@ var selectWord = {
 			}
 		});
 
-		$('body').mouseup(function () {
+		$('body').mouseup(function (event) {
 			if(onMouseDown && onMouseMove){
 				onMouseDown = false;
 				onMouseMove = false;
+
+				// ctrl key pressed
+				if(selectWord.ctrlkey && 
+					(!event.originalEvent.ctrlKey && !event.originalEvent.metaKey)){
+					return;
+				}
 
 				if(!selectWord.enabled){
 					selectWord.enabled = true;
