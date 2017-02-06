@@ -28,6 +28,7 @@ easy useage
 OPEN SOURCE: https://github.com/pisceanfoot/DanCi
 
 变更记录：
+
 2017-02-06:
 
 1. support web page with HTTPS
@@ -36,7 +37,8 @@ OPEN SOURCE: https://github.com/pisceanfoot/DanCi
 
 1. 修复 API 失效问题
 2. 修改 popup 样式显示异常
-Thanks: Jeff (https://github.com/Jeff-Tian)
+
+  Thanks: Jeff (https://github.com/Jeff-Tian)
 
 2015-02-12：
 
