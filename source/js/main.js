@@ -293,7 +293,10 @@ var danciDict = {
 
 		// destory qtip
 		var className = _this.attr('class');
-		$('.' + className).qtip().destroy();
+		var qtipO = $('.' + className).qtip();
+		if(qtipO && qtipO.length){
+			qtipO.destroy();	
+		}
 
 		// remove highlight
 		highlight.remove(className);

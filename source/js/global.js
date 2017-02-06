@@ -134,7 +134,9 @@ var log = {
         this.find(":not(iframe, option, script, textarea)").contents().each(function () {
           if (this.nodeType === 3) {
             var s = encodeEntities(this.nodeValue).replace(terms, highlighted);
-            $(this).replaceWith(s);
+            try{
+              $(this).replaceWith(s);  
+            }catch(e){}
           }
         });
       }
@@ -188,8 +190,12 @@ var log = {
                   
                   var s = saved.replace(regterm, highlighted);
                   if(s != saved){
-                    $(_this).replaceWith(s);
-                    tipCallback(term, c);  
+                    try{
+                      $(_this).replaceWith(s);  
+                      tipCallback(term, c);
+                    }catch(e){
+
+                    }
                   }
                 });
           });
@@ -256,6 +262,10 @@ var danciStorage = {
   * @param key
   */
   remove: function (key, callback) {
+    if(!key){
+      return;
+    }
+
     key = key.toLowerCase();
     danciStorage.storage.remove(key, callback);
   },

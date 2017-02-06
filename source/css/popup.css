@@ -203,3 +203,8 @@ line-height: 21px;
 #option_container{
 	display: none;
 }
+
+#dict_word {
+	max-height: 382px;
+	overflow: auto;
+}
