@@ -29,6 +29,8 @@ var danciDict = {
 	* @description init
 	*/
 	init: function () {
+		log.debug('init');
+
 		danciStorage.init();
 		setTimeout(function(){
 			danciStorage.get(resource.CONFIG_SETTING_KEY, function (result) {
@@ -43,9 +45,10 @@ var danciDict = {
 					danciDict._setting.quci_pron = value.quci_pron == "quci_pron_open";
 					danciDict._setting.quci_shortcut = value.quci_shortcut;
 					danciDict._setting.quci_huaci = value.quci_huaci;
-				}
 
-				log.debug(value);
+					log.debug('setting', value);
+					log.debug('setting converted', danciDict._setting);
+				}
 
 				danciStorage.onChange(danciDict.onStorageChanged);
 				selectWord.init({onSelect: danciDict.onSelect, setting: danciDict._setting});

@@ -10,14 +10,18 @@ var resource = {
 
 var log = {
 	log: function (arg) {
-		console.log(arg);
+    var args = Array.prototype.slice.call(arguments);
+		console.log.apply(console.log, args);
 	},
 	error: function (arg) {
-		console.error(arg);
+    var args = Array.prototype.slice.call(arguments);
+		console.error.apply(console.error, args);
 	},
 	debug: function (arg) {
-      if(config.isDebug)
-        console.debug(arg);
+    if(config.isDebug){
+      var args = Array.prototype.slice.call(arguments);
+      console.debug.apply(console.debug, args);
+    }
 	}
 };
 
@@ -118,6 +122,8 @@ var log = {
   }
 
   $.fn.highlightSearchTerms = function (options) {
+    log.debug('highlightSearchTerms');
+
     var o = $.extend({}, $.fn.highlightSearchTerms.defaults, options),
       terms,
       t,
@@ -125,18 +131,25 @@ var log = {
       highlighted;
 
       terms = o.terms;
+      log.debug('terms:==>', terms);
+
       // Highlight terms
       if (terms !== "") {
         terms = new RegExp("(" + terms + ")", "gi");
         t = o.tagName;
         c = o.className;
         highlighted = "<" + t + " class=\"" + c + "\" style=\"" + o.style + "\">$1</" + t + ">";
-        this.find(":not(iframe, option, script, textarea)").contents().each(function () {
+        this.find(":not(head, iframe, option, script, textarea, style, noscript)").contents().each(function () {
           if (this.nodeType === 3) {
+            log.debug('this.nodeValue', this.nodeValue);
             var s = encodeEntities(this.nodeValue).replace(terms, highlighted);
             try{
               $(this).replaceWith(s);  
-            }catch(e){}
+            }catch(e){
+              console.log(terms);
+              console.log(s);
+              console.error(e);
+            }
           }
         });
       }
@@ -145,6 +158,9 @@ var log = {
   };
 
   $.fn.highlightAllSearchTerms = function (options, settingCallback, tipCallback) {
+      log.debug('highlightAllSearchTerms');
+      // console.log('start', new Date());
+
       var o = $.extend({}, $.fn.highlightSearchTerms.defaults, options),
         terms,
         t,
@@ -154,25 +170,33 @@ var log = {
         highlighted;
 
         terms = o.terms;
+        log.debug('terms', terms);
+
         // Highlight terms
         if (terms && terms.length) {
           t = o.tagName;
 
           //return this;
-          this.find(":not(iframe, option, script, textarea)").contents().filter(function(){
+          this.find(":not(head, iframe, option, script, textarea, style, noscript)").contents().filter(function(){
             return this.nodeType == 3;
           }).each(function () {
+                var _this = this;
 
-                _this = this;
-                
-                if(!_this.nodeValue){
+                var nodeValue = _this.nodeValue;
+                if(!nodeValue){
                   return;
                 }
+                nodeValue = nodeValue.trim();
+                if(!nodeValue){
+                  return;
+                }
+
+                log.debug('node value:', nodeValue, nodeValue.length);
 
                 $.each(terms, function(i, term){
                   
                   //var saved = encodeEntities(_this.nodeValue);
-                  var saved = _this.nodeValue;
+                  var saved = nodeValue;
                   
                   if(!saved){
                     return;
@@ -188,19 +212,24 @@ var log = {
                   var regterm = new RegExp("(" + term + ")", "gi");
                   highlighted = "<" + t + " class=\"" + c + "\" style=\"" + s + "\">$1</" + t + ">";
                   
+                  // log.debug(term, 'replace to', highlighted);
                   var s = saved.replace(regterm, highlighted);
+                  // log.debug('result', s);
+
                   if(s != saved){
                     try{
                       $(_this).replaceWith(s);  
                       tipCallback(term, c);
                     }catch(e){
-
+                      console.log(s);
+                      console.error(e);
                     }
                   }
                 });
           });
         }
 
+        // console.log('end', new Date());
         return this;
     };
 
