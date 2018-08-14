@@ -135,7 +135,7 @@ var log = {
 
       // Highlight terms
       if (terms !== "") {
-        terms = new RegExp("(" + terms + ")", "gi");
+        terms = new RegExp("\\b(" + terms + ")\\b", "gi");
         t = o.tagName;
         c = o.className;
         highlighted = "<" + t + " class=\"" + c + "\" style=\"" + o.style + "\">$1</" + t + ">";
@@ -209,7 +209,7 @@ var log = {
                   c = r.className;
                   s = r.style;
 
-                  var regterm = new RegExp("(" + term + ")", "gi");
+                  var regterm = new RegExp("\\b(" + term + ")\\b", "gi");
                   highlighted = "<" + t + " class=\"" + c + "\" style=\"" + s + "\">$1</" + t + ">";
                   
                   // log.debug(term, 'replace to', highlighted);
