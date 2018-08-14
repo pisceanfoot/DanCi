@@ -93,13 +93,25 @@ var highlight = {
 				var a=[b(),b(),b()],
 				c=rgbToHsl(a[0],a[1],a[2]);
 				a=[a[0].toString(16), a[1].toString(16), a[2].toString(16)];
-				
-				var d=[~~(c[0]*255),"100%,70%"];
-				return[a.join(""),d.join(",")]
+                
+                var h_result = ~~(c[0]*255);
+                if(h_result < 50){
+                    h_result = 50;
+                }
+
+                var sl_result = "";
+                if(h_result > 185){
+                    sl_result = "90%,60%";
+                }else{
+                    sl_result = "61%,50%";
+                }
+
+				var d = [h_result, sl_result];
+				return [a.join(""),d.join(",")];
 			};
 		}
 		
-		return function(){return["FFFF00","60,100%,50%"]};
+		return function(){return["FFFF00","60,84%,50%"]};
 	}
 };
 

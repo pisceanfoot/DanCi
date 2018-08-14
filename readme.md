@@ -29,6 +29,12 @@ OPEN SOURCE: https://github.com/pisceanfoot/DanCi
 
 变更记录：
 
+2018-08-14:
+1. 感谢[Li Yuanrui](https://plus.google.com/116557303054720685872) 反馈
+2. 单词高亮 Match 整个单词
+3. 调整单词高亮饱和度和亮度
+
+
 2017-02-06:
 
 1. support web page with HTTPS
