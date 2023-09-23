@@ -30,7 +30,7 @@
    "omnibox": {
       "keyword": "danci"
    },
-   "permissions": ["notifications", "tabs", "contextMenus", "storage"],
+   "permissions": ["tabs", "contextMenus", "storage"],
    "host_permissions": ["https://cn.bing.com/dict/*"],
    "version": "1.5"
 }
